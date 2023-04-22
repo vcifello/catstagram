@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private loginPath = 'login'
-  private registerPath = 'register'
+  private loginPath = 'https://localhost:7101/identity/login'
+  private registerPath = 'https://localhost:7101/identity/register'
   constructor(private http: HttpClient) { }
 
   login(data: any): Observable<any>{
@@ -15,6 +15,12 @@ export class AuthService {
   }
 
   register(data: any): Observable<any>{
-    return this.http.post(this.registerPath,data)
+    return this.http.post(this.registerPath, data)
+  }
+  saveToken(token: string) {
+    localStorage.setItem('token', token)
+  }
+  getToken() {
+    return localStorage.getItem('token');
   }
 }
