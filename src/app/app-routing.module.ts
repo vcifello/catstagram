@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CreatepostComponent } from './createpost/createpost.component';
 import { AuthService } from './services/auth.service';
+import { ListCatsComponent } from './list-cats/list-cats.component';
 
 const authGuardFn: CanActivateFn = () => {
   const authService = inject(AuthService);
@@ -13,7 +14,8 @@ const authGuardFn: CanActivateFn = () => {
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: "create", component: CreatepostComponent, canActivate: [authGuardFn]}
+  {path: "create", component: CreatepostComponent, canActivate: [authGuardFn]},
+  {path: "cats" , component: ListCatsComponent, canActivate: [authGuardFn]}
 ];
 
 @NgModule({
