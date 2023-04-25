@@ -24,6 +24,10 @@ export class CatService {
     return this.http.get<Cat>(this.catPath + '/' + id)
   }
 
+  editCat(data: any) {
+    return this.http.put(this.catPath, data)
+  }
+
   deleteCat(id: number) {
     return this.http.delete(this.catPath + '/' + id)
   }
