@@ -15,7 +15,9 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ListCatsComponent } from './list-cats/list-cats.component';
 import { DetailsCatComponent } from './details-cat/details-cat.component';
 import { EditCatComponent } from './edit-cat/edit-cat.component';
-
+import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { EditCatComponent } from './edit-cat/edit-cat.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AuthService,
@@ -40,6 +44,11 @@ import { EditCatComponent } from './edit-cat/edit-cat.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true
     }
   ],
